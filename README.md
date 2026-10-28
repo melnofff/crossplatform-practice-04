@@ -53,5 +53,13 @@ Node.js 24.x и npm 11+. Выполните `npm ci`, затем `npm start`.
 реальный обмен с `wss://echo.websocket.org`, загрузка корневого URL без сети,
 состав кэша и обновление v1 → v2 на изолированном тестовом сервере.
 Повторная проверка во встроенном браузере подтвердила работу приложения при `navigator.onLine === false`.
-Lighthouse CLI, Navigation Desktop: Performance 100, Accessibility 100, Best Practices 100, SEO 100.
-Это результаты автоматической проверки; они не заменяют подтверждение установки в Windows.
+Lighthouse 13.4.1 непосредственно в DevTools, Navigation Desktop: Performance 100, Accessibility 100, Best Practices 100, SEO 100.
+Предварительный запуск Lighthouse CLI дал те же оценки.
+
+Установка PWA выполнена через Chrome DevTools Protocol, затем установленное приложение
+запущено командой PWA.launch. Проверка `matchMedia('(display-mode: standalone)').matches`
+вернула `true`; страница управлялась Service Worker и имела кэш `pwa-note-v4`.
+Использовался отдельный headless-профиль Chrome. Запуск именно через меню «Пуск»
+и внешний вид рамки окна Windows отдельно не проверены.
+Два предупреждения манифеста относятся к необязательным снимкам для Richer PWA Install UI
+и не препятствовали установке.
