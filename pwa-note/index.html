@@ -34,8 +34,11 @@
 <main>
   <header><div class="eyebrow">ПРАКТИКА 4.2 · ВАРИАНТ 4</div><h1>Заметка</h1><p class="muted">Ваш текст сохраняется на этом устройстве.</p></header>
   <section aria-labelledby="noteTitle"><h2 id="noteTitle">Моя заметка</h2><label for="note">Текст заметки</label><textarea id="note" placeholder="Запишите важное…"></textarea><p id="saveStatus" class="status" role="status">Готово к вводу</p></section>
-  <footer>Мельников Данила Вячеславович · ТРПО23-2<br>Кросс-платформенная разработка</footer>
+  <section aria-labelledby="wasmTitle"><h2 id="wasmTitle">Квадрат числа</h2><p>Вычисление выполняет модуль WebAssembly, в том числе без сети.</p><label for="number">Целое число от −46340 до 46340</label><div class="row"><input id="number" type="number" min="-46340" max="46340" step="1" value="7"><button id="square" disabled>Вычислить квадрат (Wasm)</button><output id="result" role="status">Загрузка модуля…</output></div></section>
+  <section aria-labelledby="chatTitle"><h2 id="chatTitle">Эхо-чат</h2><p class="muted">Сервер возвращает ваш текст. Для обмена нужна сеть.</p><p id="connection" role="status">Не подключено</p><button id="connect">Подключиться</button><form id="chat"><label for="message">Сообщение</label><div class="row"><input id="message" maxlength="500" required autocomplete="off"><button id="send" disabled>Отправить</button></div></form><ul id="messages" aria-live="polite" aria-label="История сообщений"></ul></section>
+  <footer>Мельников Данила Вячеславович · ТРПО23-2<br>Кросс-платформенная разработка · версия 4</footer>
 </main>
+<script src="app.js" defer></script>
 <script>
   const note = document.getElementById('note');
   const saveStatus = document.getElementById('saveStatus');
