@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#183b36">
+  <meta name="description" content="Заметка с автоматическим сохранением и работой без сети.">
+  <title>Заметка — практика 4.2</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="icon.png">
+  <style>
+    * { box-sizing: border-box; }
+    body { margin:0; font:18px/1.5 system-ui,sans-serif; color:#19332e; background:#f5f3ed; }
+    main { max-width:920px; margin:auto; padding:40px 24px; }
+    h1 { font-size:44px; margin:8px 0; letter-spacing:-1px; }
+    h2 { font-size:23px; margin:0 0 16px; }
+    .eyebrow { font-size:13px; font-weight:700; letter-spacing:2px; }
+    .muted { color:#52645c; } header { margin-bottom:28px; }
+    section { padding:24px; background:white; border:1px solid #d5ddd6; border-radius:16px; margin:20px 0; }
+    label { display:block; margin-bottom:8px; font-weight:600; }
+    textarea,input { font:inherit; border:1px solid #657a70; border-radius:8px; padding:12px; width:100%; background:#fff; color:#19332e; }
+    textarea { min-height:150px; resize:vertical; }
+    button { font:inherit; padding:11px 18px; border:0; border-radius:8px; background:#183b36; color:white; cursor:pointer; }
+    button:disabled { background:#dce2de; color:#495e52; cursor:default; }
+    :focus-visible { outline:3px solid #a95219; outline-offset:3px; }
+    .row { display:flex; gap:12px; align-items:center; flex-wrap:wrap; }
+    .row input { flex:1; min-width:160px; }
+    .status { font-size:14px; margin:10px 0 0; }
+    output { font-weight:700; } li { overflow-wrap:anywhere; }
+    footer { font-size:13px; color:#52645c; }
+  </style>
+</head>
+<body>
+<main>
+  <header><div class="eyebrow">ПРАКТИКА 4.2 · ВАРИАНТ 4</div><h1>Заметка</h1><p class="muted">Ваш текст сохраняется на этом устройстве.</p></header>
+  <section aria-labelledby="noteTitle"><h2 id="noteTitle">Моя заметка</h2><label for="note">Текст заметки</label><textarea id="note" placeholder="Запишите важное…"></textarea><p id="saveStatus" class="status" role="status">Готово к вводу</p></section>
+  <footer>Мельников Данила Вячеславович · ТРПО23-2<br>Кросс-платформенная разработка</footer>
+</main>
+<script>
+  const note = document.getElementById('note');
+  const saveStatus = document.getElementById('saveStatus');
+  try { note.value = localStorage.getItem('pwa-note') || ''; }
+  catch { saveStatus.textContent = 'Хранилище недоступно. Скопируйте текст перед закрытием.'; }
+  note.addEventListener('input', () => {
+    try { localStorage.setItem('pwa-note', note.value); saveStatus.textContent = 'Сохранено на устройстве'; }
+    catch { saveStatus.textContent = 'Не удалось сохранить. Скопируйте текст перед закрытием.'; }
+  });
+  if ('serviceWorker' in navigator) navigator.serviceWorker.register('./service-worker.js').catch(console.error);
+</script>
+</body>
+</html>

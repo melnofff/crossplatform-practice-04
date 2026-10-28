@@ -1,0 +1,16 @@
+{
+  "id": "./",
+  "name": "PWA Заметка",
+  "short_name": "Заметка",
+  "description": "Заметка с локальным сохранением, WebAssembly и учебным эхо-чатом",
+  "lang": "ru",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f5f3ed",
+  "theme_color": "#183b36",
+  "icons": [
+    {"src":"icon.png", "sizes":"192x192", "type":"image/png"},
+    {"src":"icon-512.png", "sizes":"512x512", "type":"image/png"}
+  ]
+}
